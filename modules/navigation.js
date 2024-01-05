@@ -10,11 +10,12 @@ let activePageButton = pageButtons.find(
 function init() {
     pageButtons.forEach((button) => {
         button.addEventListener("click", (element) => {
-            const pageTarget = element.target.dataset.pageTarget;
+            const pageTarget = element.currentTarget.dataset.pageTarget;
 
             const targetPage = pages.find(
                 (page) => page.dataset.page === pageTarget,
             );
+
             const targetPageButton = pageButtons.find(
                 (pageButton) => pageButton.dataset.pageTarget === pageTarget,
             );
