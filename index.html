@@ -4,9 +4,82 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles/output.css" />
+        <script src="index.js" type="module"></script>
+        <script
+            src="https://kit.fontawesome.com/4323c15833.js"
+            crossorigin="anonymous"
+        ></script>
         <title>JavaScript Array Assesment</title>
     </head>
-    <body>
-        <h1 class="text-green-500">Hello World</h1>
+
+    <body class="bg-slate-700">
+        <main
+            class="mx-auto flex h-dynamic-screen max-w-[375px] flex-col space-y-8 p-8"
+        >
+            <div class="flex flex-1 flex-col gap-8">
+                <div
+                    class="hidden space-y-2 rounded-lg bg-gray-100 p-4"
+                    id="email-select-container"
+                >
+                    <label class="font-bold" for="email-select">Account</label>
+                    <select
+                        class="rounded-lg px-4 py-2 shadow"
+                        id="email-select"
+                    ></select>
+                </div>
+
+                <form
+                    class="flex flex-col gap-4 rounded-lg bg-gray-100 p-4"
+                    id="email-form"
+                >
+                    <div class="space-y-1">
+                        <label class="font-bold" for="email-input">Email</label>
+                        <input
+                            class="rounded-lg px-4 py-2 shadow"
+                            id="email-input"
+                            type="email"
+                            required
+                        />
+                    </div>
+                    <button
+                        class="text-bold rounded-lg bg-blue-500 px-4 py-2 text-white"
+                    >
+                        Create Account
+                    </button>
+                </form>
+            </div>
+
+            <nav>
+                <ul
+                    class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
+                >
+                    <li class="navbar-item--active">
+                        <button
+                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                        >
+                            <i class="fa-solid fa-user text-base"></i>
+                            Account
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                        >
+                            <i class="fa-solid fa-magnifying-glass text-base">
+                            </i>
+                            Find
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                        >
+                            <i class="fa-solid fa-image text-base"></i>
+                            Gallery
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </main>
     </body>
 </html>
