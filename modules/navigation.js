@@ -1,39 +1,46 @@
-// Elements
-const pages = Array.from(document.querySelectorAll("[data-page]"));
-const pageButtons = Array.from(document.querySelectorAll("[data-page-target]"));
+const ACTIVE_TAB_BTN_CLASS = "navbar-item--active";
 
-let activePage = pages.find((page) => page.dataset.page === "account");
-let activePageButton = pageButtons.find(
-    (page) => page.dataset.pageTarget === "account",
-);
+const tabs = document.querySelectorAll("[data-tab]");
+const tabBtns = document.querySelectorAll("[data-tab-target]");
+
+const state = {
+    activeTab: "account",
+};
+
+function render() {
+    tabs.forEach((tab) => {
+        if (tab.dataset.tab === state.activeTab) {
+            tab.style.display = "unset";
+        } else {
+            tab.style.display = "none";
+        }
+    });
+
+    tabBtns.forEach((tabBtn) => {
+        if (tabBtn.dataset.tabTarget === state.activeTab) {
+            tabBtn.classList.add(ACTIVE_TAB_BTN_CLASS);
+        } else {
+            tabBtn.classList.remove(ACTIVE_TAB_BTN_CLASS);
+        }
+    });
+}
+
+function switchTab(newTabId) {
+    if (state.activeTab === newTabId) return;
+
+    state.activeTab = newTabId;
+
+    render();
+}
 
 function init() {
-    pageButtons.forEach((button) => {
-        button.addEventListener("click", (element) => {
-            const pageTarget = element.currentTarget.dataset.pageTarget;
-
-            const targetPage = pages.find(
-                (page) => page.dataset.page === pageTarget,
-            );
-
-            const targetPageButton = pageButtons.find(
-                (pageButton) => pageButton.dataset.pageTarget === pageTarget,
-            );
-
-            if (targetPage === activePage) return;
-
-            activePage.style.display = "none";
-            targetPage.style.display = "unset";
-
-            activePageButton.parentElement.classList.remove(
-                "navbar-item--active",
-            );
-            targetPageButton.parentElement.classList.add("navbar-item--active");
-
-            activePageButton = targetPageButton;
-            activePage = targetPage;
+    tabBtns.forEach((button) => {
+        button.addEventListener("click", () => {
+            switchTab(button.dataset.tabTarget);
         });
     });
+
+    render();
 }
 
 export default {

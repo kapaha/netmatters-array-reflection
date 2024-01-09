@@ -16,7 +16,7 @@
         <main
             class="mx-auto flex h-dynamic-screen max-w-[375px] flex-col gap-8 p-8"
         >
-            <div data-page="account" class="flex-1">
+            <div data-tab="account" class="flex-1">
                 <div class="flex flex-col gap-8">
                     <div
                         class="hidden space-y-2 rounded-lg bg-gray-100 p-4"
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div data-page="find" class="hidden flex-1">
+            <div data-tab="find" class="hidden flex-1">
                 <div class="flex h-full flex-col gap-4">
                     <div
                         class="flex items-center gap-4 rounded-lg bg-gray-100 px-4 py-2 text-gray-600"
@@ -101,44 +101,39 @@
                 </div>
             </div>
 
-            <div data-page="gallery" class="hidden flex-1">
+            <div data-tab="gallery" class="hidden flex-1">
                 <div class="flex-col gap-8">Gallery Page</div>
             </div>
 
-            <nav>
-                <ul
-                    class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
-                >
-                    <li class="navbar-item--active">
-                        <button
-                            data-page-target="account"
-                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                        >
-                            <i class="fa-solid fa-user text-base"></i>
-                            Account
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            data-page-target="find"
-                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                        >
-                            <i class="fa-solid fa-magnifying-glass text-base">
-                            </i>
-                            Find
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            data-page-target="gallery"
-                            class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                        >
-                            <i class="fa-solid fa-image text-base"></i>
-                            Gallery
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+            <ul class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1">
+                <li>
+                    <button
+                        data-tab-target="account"
+                        class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                    >
+                        <i class="fa-solid fa-user text-base"></i>
+                        Account
+                    </button>
+                </li>
+                <li>
+                    <button
+                        data-tab-target="find"
+                        class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                    >
+                        <i class="fa-solid fa-magnifying-glass text-base"> </i>
+                        Find
+                    </button>
+                </li>
+                <li>
+                    <button
+                        data-tab-target="gallery"
+                        class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                    >
+                        <i class="fa-solid fa-image text-base"></i>
+                        Gallery
+                    </button>
+                </li>
+            </ul>
         </main>
     </body>
 </html>
