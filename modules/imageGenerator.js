@@ -1,10 +1,8 @@
-import Account from "./account.js";
-
-// Elements
 const imagePreview = document.getElementById("find-image");
 const newImageBtn = document.getElementById("new-image-btn");
 const saveImageBtn = document.getElementById("save-image-btn");
 
+let Account = null;
 let currentImageUrl = null;
 
 async function getImage() {
@@ -16,14 +14,18 @@ async function getImage() {
 }
 
 function saveImage() {
-    const activeUser = Account.Users.getActiveUser();
-
-    Account.Users.addImage(activeUser, currentImageUrl);
+    Account.saveImage(currentImageUrl);
 
     getImage();
 }
 
-function init() {
+function init(account) {
+    if (!account) {
+        throw new Error("Account module is required");
+    }
+
+    Account = account;
+
     newImageBtn.addEventListener("click", getImage);
     saveImageBtn.addEventListener("click", saveImage);
 

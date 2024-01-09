@@ -1,75 +1,14 @@
-import Storage from "./storage.js";
-
-// Constants
-const STORAGE_KEY_USERS = "USERS";
-const STORAGE_KEY_ACTIVE_USER = "ACTIVE_USER";
-
-// Elements
-const emailForm = document.querySelector("#email-form");
-const emailInput = document.querySelector("#email-input");
 const emailSelect = document.querySelector("#email-select");
 const emailSelectContainer = document.querySelector("#email-select-container");
+const emailForm = document.querySelector("#email-form");
+const emailInput = document.querySelector("#email-input");
 
-const Users = (function () {
-    const users = Storage.get(STORAGE_KEY_USERS) || [];
+const state = {
+    users: [],
+    activeUserId: null,
+};
 
-    let activeUser =
-        Storage.get(STORAGE_KEY_ACTIVE_USER) || users[0]?.email || "";
-
-    setActiveUser(activeUser);
-
-    function create(email) {
-        if (exists(email)) {
-            throw new Error("User already exists");
-        }
-
-        users.push({ email, images: [] });
-
-        Storage.set(STORAGE_KEY_USERS, users);
-    }
-
-    function getActiveUser() {
-        return activeUser;
-    }
-
-    function setActiveUser(email) {
-        activeUser = email;
-
-        const activeUserEl = document.getElementById("active-user");
-        activeUserEl.textContent = email;
-
-        Storage.set(STORAGE_KEY_ACTIVE_USER, email);
-    }
-
-    function get() {
-        return users;
-    }
-
-    function getUser(email) {
-        return users.find((user) => user.email === email);
-    }
-
-    function addImage(email, imageUrl) {
-        const user = getUser(email);
-
-        user.images.push(imageUrl);
-
-        Storage.set(STORAGE_KEY_USERS, users);
-    }
-
-    function exists(email) {
-        return users.some((user) => user.email === email);
-    }
-
-    return {
-        create,
-        get,
-        exists,
-        getActiveUser,
-        setActiveUser,
-        addImage,
-    };
-})();
+let Storage = null;
 
 function createOptionElement(value) {
     const optionEl = document.createElement("option");
@@ -80,18 +19,87 @@ function createOptionElement(value) {
     return optionEl;
 }
 
-function initEmailSelect() {
-    const users = Users.get();
+function fetchState() {
+    const users = Storage.getUsers();
 
-    if (users && users.length) {
+    if (!users) return;
+
+    state.users = users;
+
+    const activeUser = Storage.getActiveUser();
+
+    if (!activeUser) {
+        state.storedActiveUser = state.users[0];
+    }
+
+    state.activeUserId = activeUser;
+}
+
+function createUser(email) {
+    const userExists = state.users.some((user) => user.email === email);
+
+    if (userExists) {
+        throw new Error("User already exists");
+    }
+
+    state.users.push({ email, images: [] });
+    Storage.setUsers(state.users);
+}
+
+function getActiveUser() {
+    return state.users.find((user) => user.email === state.activeUserId);
+}
+
+function setActiveUser(id) {
+    state.activeUserId = id;
+    Storage.setActiveUser(id);
+
+    renderActiveUserEl();
+}
+
+function saveImage(imageUrl) {
+    const activeUser = getActiveUser();
+
+    activeUser.images.push(imageUrl);
+    Storage.setUsers(state.users);
+}
+
+function handleEmailFormSubmit(event) {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+
+    try {
+        createUser(email);
+    } catch (error) {
+        console.error(error);
+        // TODO: Show error message
+        return;
+    }
+
+    setActiveUser(email);
+
+    emailSelectContainer.classList.remove("hidden");
+
+    const optionEl = createOptionElement(email);
+    emailSelect.appendChild(optionEl);
+    emailSelect.value = email;
+
+    emailInput.value = "";
+}
+
+function renderActiveUserEl() {
+    document.getElementById("active-user").textContent = state.activeUserId;
+}
+
+function renderEmailSelect() {
+    if (state.users.length) {
         emailSelectContainer.classList.remove("hidden");
 
-        const activeUser = Users.getActiveUser();
-
-        for (const user of users) {
+        for (const user of state.users) {
             const optionEl = createOptionElement(user.email);
 
-            if (user.email === activeUser) {
+            if (user.email === state.activeUserId) {
                 optionEl.selected = true;
             }
 
@@ -100,43 +108,26 @@ function initEmailSelect() {
     }
 }
 
-function initEmailForm() {
-    emailForm.addEventListener("submit", (event) => {
-        event.preventDefault();
+function init(storage) {
+    if (!storage) {
+        throw new Error("Storage module is required");
+    }
 
-        const email = emailInput.value.trim();
+    Storage = storage;
 
-        try {
-            Users.create(email);
-        } catch (error) {
-            console.error(error);
-            return;
-        }
+    fetchState();
 
-        const optionEl = createOptionElement(email);
+    emailForm.addEventListener("submit", handleEmailFormSubmit);
 
-        emailSelect.appendChild(optionEl);
-
-        // Active user
-        Users.setActiveUser(email);
-        emailSelect.value = email;
-
-        emailSelectContainer.classList.remove("hidden");
-        emailInput.value = "";
-    });
     emailSelect.addEventListener("change", (event) => {
-        const selected = event.target.value;
-
-        Users.setActiveUser(selected);
+        setActiveUser(event.target.value);
     });
-}
 
-function init() {
-    initEmailSelect();
-    initEmailForm();
+    renderEmailSelect();
+    renderActiveUserEl();
 }
 
 export default {
     init,
-    Users,
+    saveImage,
 };
