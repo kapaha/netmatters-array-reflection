@@ -55,13 +55,44 @@ function setActiveUser(id) {
     Storage.setActiveUser(id);
 
     renderActiveUserEl();
+    renderGallery();
 }
 
 function saveImage(imageUrl) {
-    const activeUser = getActiveUser();
-
-    activeUser.images.push(imageUrl);
+    getActiveUser().images.push(imageUrl);
     Storage.setUsers(state.users);
+
+    renderGallery();
+}
+
+function deleteImage(imageUrl) {
+    getActiveUser().images = getActiveUser().images.filter(
+        (imgUrl) => imgUrl !== imageUrl,
+    );
+    Storage.setUsers(state.users);
+
+    renderGallery();
+}
+
+function renderGallery() {
+    const galleryEl = document.getElementById("gallery-container");
+    const fragment = document.createDocumentFragment();
+
+    galleryEl.innerHTML = "";
+
+    getActiveUser().images.forEach((imageUrl) => {
+        const imgEl = document.createElement("img");
+        imgEl.classList.add("gallery__img");
+        imgEl.src = imageUrl;
+
+        const imageContainer = document.createElement("div");
+        imageContainer.classList.add("image-container");
+        imageContainer.appendChild(imgEl);
+
+        fragment.appendChild(imageContainer);
+    });
+
+    galleryEl.appendChild(fragment);
 }
 
 function handleEmailFormSubmit(event) {
@@ -89,7 +120,11 @@ function handleEmailFormSubmit(event) {
 }
 
 function renderActiveUserEl() {
-    document.getElementById("active-user").textContent = state.activeUserId;
+    if (state.activeUserId) {
+        document.querySelectorAll(".active-user").forEach((el) => {
+            el.textContent = state.activeUserId;
+        });
+    }
 }
 
 function renderEmailSelect() {
@@ -125,9 +160,14 @@ function init(storage) {
 
     renderEmailSelect();
     renderActiveUserEl();
+
+    if (state.activeUserId) {
+        renderGallery();
+    }
 }
 
 export default {
     init,
     saveImage,
+    deleteImage,
 };

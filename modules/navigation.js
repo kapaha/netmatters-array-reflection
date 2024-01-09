@@ -1,4 +1,8 @@
+import Observable from "./observable.js";
+
 const ACTIVE_TAB_BTN_CLASS = "navbar-item--active";
+
+const navObservable = new Observable();
 
 const tabs = document.querySelectorAll("[data-tab]");
 const tabBtns = document.querySelectorAll("[data-tab-target]");
@@ -26,6 +30,8 @@ function render() {
 }
 
 function switchTab(newTabId) {
+    navObservable.notify(newTabId);
+
     if (state.activeTab === newTabId) return;
 
     state.activeTab = newTabId;
@@ -43,6 +49,13 @@ function init() {
     render();
 }
 
+function logger(page) {
+    console.log(`Switched to ${page} page`);
+}
+
+navObservable.subscribe(logger);
+
 export default {
     init,
+    navObservable,
 };
