@@ -83,7 +83,7 @@ function renderGallery() {
 
     getActiveUser().images.forEach((image) => {
         const imgEl = document.createElement("img");
-        imgEl.classList.add("gallery__img");
+        imgEl.classList.add("w-full", "gallery-image");
         imgEl.src = image.url;
         imgEl.dataset.imageId = image.id;
 

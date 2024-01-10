@@ -598,6 +598,14 @@ video {
   align-items: center;
 }
 
+.gap-0 {
+  gap: 0px;
+}
+
+.gap-0\.5 {
+  gap: 0.125rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -622,12 +630,12 @@ video {
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
-.overflow-hidden {
-  overflow: hidden;
+.overflow-auto {
+  overflow: auto;
 }
 
-.overflow-y-auto {
-  overflow-y: auto;
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded-lg {
@@ -738,32 +746,6 @@ label {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-#gallery-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.image-container {
-  position: relative;
-  flex-basis: calc((100% / 3) - 6px);
-  margin: 3px;
-}
-
-.image-container::before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
-
-.image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  border-radius: 8px;
-}
-
 @media (min-width: 1024px) {
   .lg\:container {
     width: 100%;
@@ -804,10 +786,6 @@ label {
   .md\:overflow-visible {
     overflow: visible;
   }
-
-  .md\:overflow-y-visible {
-    overflow-y: visible;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -837,6 +815,14 @@ label {
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:overflow-hidden {
+    overflow: hidden;
+  }
+
+  .lg\:p-4 {
+    padding: 1rem;
   }
 }
 

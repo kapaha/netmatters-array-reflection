@@ -40,7 +40,7 @@ function init(account, navigation) {
     Account = account;
     Navigation = navigation;
 
-    addGlobalEventListener("click", ".gallery__img", (event) => {
+    addGlobalEventListener("click", ".gallery-image", (event) => {
         renderImageViewer(event.target.src, event.target.dataset.imageId);
     });
 

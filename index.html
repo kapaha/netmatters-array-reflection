@@ -99,10 +99,13 @@
 
             <div
                 data-tab="gallery"
-                class="hidden overflow-y-auto rounded-lg bg-gray-100 md:overflow-y-visible lg:col-span-2 lg:block"
+                class="hidden overflow-auto rounded-lg bg-gray-100 lg:col-span-2 lg:block lg:overflow-hidden"
             >
-                <div id="gallery-grid" class="flex flex-col gap-4">
-                    <div id="gallery-container"></div>
+                <div id="gallery-grid">
+                    <div
+                        id="gallery-container"
+                        class="grid w-full grid-cols-3 gap-0.5 lg:p-4"
+                    ></div>
                 </div>
                 <div
                     id="gallery-single"
