@@ -14,9 +14,9 @@ const state = {
 function render() {
     tabs.forEach((tab) => {
         if (tab.dataset.tab === state.activeTab) {
-            tab.style.display = "block";
+            tab.classList.remove("hidden");
         } else {
-            tab.style.display = "none";
+            tab.classList.add("hidden");
         }
     });
 
