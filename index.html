@@ -63,9 +63,15 @@
                 <div
                     class="!grid h-full grid-rows-[1fr_auto] gap-8 rounded-lg bg-gray-100"
                 >
-                    <div class="overflow-hidden">
+                    <div
+                        class="flex items-center justify-center overflow-hidden"
+                    >
+                        <div
+                            id="loading"
+                            class="after m-8 h-[64px] w-[64px] after:block after:h-full after:w-full after:animate-spin-slow after:rounded-full after:border-[6px] after:border-transparent after:border-y-gray-400 after:content-['']"
+                        ></div>
                         <img
-                            class="mx-auto h-full object-contain"
+                            class="mx-auto hidden h-full object-contain"
                             id="find-image"
                             alt=""
                         />
