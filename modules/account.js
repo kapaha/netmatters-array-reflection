@@ -60,7 +60,7 @@ function setActiveUser(id) {
 }
 
 function saveImage(imageUrl) {
-    getActiveUser().images.push({ url: imageUrl, id: getRandomId() });
+    getActiveUser().images.unshift({ url: imageUrl, id: getRandomId() });
     Storage.setUsers(state.users);
 
     renderGallery();
