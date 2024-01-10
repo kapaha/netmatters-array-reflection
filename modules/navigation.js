@@ -14,7 +14,7 @@ const state = {
 function render() {
     tabs.forEach((tab) => {
         if (tab.dataset.tab === state.activeTab) {
-            tab.style.display = "unset";
+            tab.style.display = "block";
         } else {
             tab.style.display = "none";
         }
