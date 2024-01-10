@@ -750,16 +750,24 @@ label {
 
 .navbar-item--active::before {
   content: "";
-  position: absolute;
-  bottom: 40%;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  position: absolute;
+  transform: translate(-50%, -50%);
   z-index: -1;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+@media only screen and (max-height: 500px) {
+  .navbar-item--active::before {
+    right: 30%;
+    top: 50%;
+    left: auto;
+  }
 }
 
 .toastify {
@@ -846,37 +854,37 @@ label {
   }
 }
 
-@media (min-width: 1024px) {
-  .lg\:container {
+@media only screen and (min-width: 1024px) and (min-height: 500px) {
+  .desktop\:container {
     width: 100%;
   }
 
   @media (min-width: 640px) {
-    .lg\:container {
+    .desktop\:container {
       max-width: 640px;
     }
   }
 
   @media (min-width: 768px) {
-    .lg\:container {
+    .desktop\:container {
       max-width: 768px;
     }
   }
 
   @media (min-width: 1024px) {
-    .lg\:container {
+    .desktop\:container {
       max-width: 1024px;
     }
   }
 
   @media (min-width: 1280px) {
-    .lg\:container {
+    .desktop\:container {
       max-width: 1280px;
     }
   }
 
   @media (min-width: 1536px) {
-    .lg\:container {
+    .desktop\:container {
       max-width: 1536px;
     }
   }
@@ -936,47 +944,71 @@ label {
   content: var(--tw-content);
 }
 
-@media (min-width: 768px) {
-  .md\:overflow-visible {
-    overflow: visible;
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:col-span-2 {
+@media only screen and (min-width: 1024px) and (min-height: 500px) {
+  .desktop\:col-span-2 {
     grid-column: span 2 / span 2;
   }
 
-  .lg\:block {
+  .desktop\:block {
     display: block;
   }
 
-  .lg\:hidden {
+  .desktop\:hidden {
     display: none;
   }
 
-  .lg\:h-auto {
+  .desktop\:h-auto {
     height: auto;
   }
 
-  .lg\:min-h-screen {
+  .desktop\:min-h-screen {
     min-height: 100vh;
   }
 
-  .lg\:max-w-screen-lg {
+  .desktop\:max-w-screen-lg {
     max-width: 1024px;
   }
 
-  .lg\:grid-cols-2 {
+  .desktop\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .lg\:overflow-hidden {
+  .desktop\:overflow-hidden {
     overflow: hidden;
   }
 
-  .lg\:p-4 {
+  .desktop\:overflow-visible {
+    overflow: visible;
+  }
+
+  .desktop\:p-4 {
     padding: 1rem;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  .wide\:max-w-screen-md {
+    max-width: 768px;
+  }
+
+  .wide\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .wide\:grid-cols-\[1fr_auto\] {
+    grid-template-columns: 1fr auto;
+  }
+
+  .wide\:grid-cols-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+  }
+
+  .wide\:grid-rows-3 {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+
+  .wide\:grid-rows-none {
+    grid-template-rows: none;
   }
 }
 

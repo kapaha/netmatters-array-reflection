@@ -18,10 +18,10 @@ label {
 .navbar-item--active::before {
     content: "";
 
-    position: absolute;
-    bottom: 40%;
+    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+    transform: translate(-50%, -50%);
     z-index: -1;
 
     width: 50px;
@@ -30,6 +30,14 @@ label {
     border-radius: 50%;
 
     @apply bg-gray-100;
+}
+
+@screen wide {
+    .navbar-item--active::before {
+        right: 30%;
+        top: 50%;
+        left: auto;
+    }
 }
 
 .toastify {
