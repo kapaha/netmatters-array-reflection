@@ -56,7 +56,6 @@ function setActiveUser(id) {
     state.activeUserId = id;
     Storage.setActiveUser(id);
 
-    renderActiveUserEl();
     renderGallery();
 }
 
@@ -122,14 +121,6 @@ function handleEmailFormSubmit(event) {
     emailInput.value = "";
 }
 
-function renderActiveUserEl() {
-    if (state.activeUserId) {
-        document.querySelectorAll(".active-user").forEach((el) => {
-            el.textContent = state.activeUserId;
-        });
-    }
-}
-
 function renderEmailSelect() {
     if (state.users.length) {
         emailSelectContainer.classList.remove("hidden");
@@ -162,7 +153,6 @@ function init(storage) {
     });
 
     renderEmailSelect();
-    renderActiveUserEl();
 
     if (state.activeUserId) {
         renderGallery();
