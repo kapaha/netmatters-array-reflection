@@ -9,21 +9,21 @@ const backBtn = document.getElementById("back-btn");
 let Account = null;
 let Navigation = null;
 
-function handleNavChange(data) {
-    console.log(data);
-    if (data === "gallery") {
-        switchToGalleryView();
+function handleNavChange(tabId) {
+    if (tabId === "gallery") {
+        renderGallery();
     }
 }
 
-function switchToSingleImageView(imageUrl) {
+function renderImageViewer(imageUrl, imageId) {
     gallerySingleImage.src = imageUrl;
+    gallerySingleImage.dataset.imageId = imageId;
 
     galleryGrid.style.display = "none";
     gallerySingle.style.display = "flex";
 }
 
-function switchToGalleryView() {
+function renderGallery() {
     gallerySingle.style.display = "none";
     galleryGrid.style.display = "flex";
 }
@@ -41,26 +41,16 @@ function init(account, navigation) {
     Navigation = navigation;
 
     addGlobalEventListener("click", ".gallery__img", (event) => {
-        const imageUrl = event.target.src;
-
-        switchToSingleImageView(imageUrl);
+        renderImageViewer(event.target.src, event.target.dataset.imageId);
     });
 
     deleteImageBtn.addEventListener("click", () => {
-        // Get currently viewed image
-        const currentImg = gallerySingleImage.src;
+        Account.deleteImage(gallerySingleImage.dataset.imageId);
 
-        // Get current account
-        // Delete that image from the account
-        Account.deleteImage(currentImg);
-
-        // Switch back to gallery view
-        switchToGalleryView();
+        renderGallery();
     });
 
-    backBtn.addEventListener("click", () => {
-        switchToGalleryView();
-    });
+    backBtn.addEventListener("click", renderGallery);
 
     Navigation.navObservable.subscribe(handleNavChange);
 }

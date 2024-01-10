@@ -1,3 +1,5 @@
+import { getRandomId } from "./utils.js";
+
 const emailSelect = document.querySelector("#email-select");
 const emailSelectContainer = document.querySelector("#email-select-container");
 const emailForm = document.querySelector("#email-form");
@@ -59,15 +61,15 @@ function setActiveUser(id) {
 }
 
 function saveImage(imageUrl) {
-    getActiveUser().images.push(imageUrl);
+    getActiveUser().images.push({ url: imageUrl, id: getRandomId() });
     Storage.setUsers(state.users);
 
     renderGallery();
 }
 
-function deleteImage(imageUrl) {
+function deleteImage(imageId) {
     getActiveUser().images = getActiveUser().images.filter(
-        (imgUrl) => imgUrl !== imageUrl,
+        (image) => image.id !== imageId,
     );
     Storage.setUsers(state.users);
 
@@ -80,10 +82,11 @@ function renderGallery() {
 
     galleryEl.innerHTML = "";
 
-    getActiveUser().images.forEach((imageUrl) => {
+    getActiveUser().images.forEach((image) => {
         const imgEl = document.createElement("img");
         imgEl.classList.add("gallery__img");
-        imgEl.src = imageUrl;
+        imgEl.src = image.url;
+        imgEl.dataset.imageId = image.id;
 
         const imageContainer = document.createElement("div");
         imageContainer.classList.add("image-container");

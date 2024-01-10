@@ -49,8 +49,8 @@ function init() {
     render();
 }
 
-function logger(page) {
-    console.log(`Switched to ${page} page`);
+function logger(tab) {
+    console.log(`Switched to ${tab} tab`);
 }
 
 navObservable.subscribe(logger);
