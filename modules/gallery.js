@@ -53,6 +53,7 @@ function init(account, navigation) {
     backBtn.addEventListener("click", renderGallery);
 
     Navigation.navObservable.subscribe(handleNavChange);
+    Account.activeUserObservable.subscribe(renderGallery);
 }
 
 export default {

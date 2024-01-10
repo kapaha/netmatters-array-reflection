@@ -1,10 +1,13 @@
 import { getRandomId } from "./utils.js";
 import Toastify from "./toastify.js";
+import Observable from "./observable.js";
 
 const emailSelect = document.querySelector("#email-select");
 const emailSelectContainer = document.querySelector("#email-select-container");
 const emailForm = document.querySelector("#email-form");
 const emailInput = document.querySelector("#email-input");
+
+const activeUserObservable = new Observable();
 
 const state = {
     users: [],
@@ -58,6 +61,8 @@ function setActiveUser(id) {
     Storage.setActiveUser(id);
 
     renderGallery();
+
+    activeUserObservable.notify();
 }
 
 function saveImage(imageUrl) {
@@ -71,13 +76,15 @@ function saveImage(imageUrl) {
             stopOnFocus: true,
         }).showToast();
 
-        return;
+        return false;
     }
 
     getActiveUser().images.unshift({ url: imageUrl, id: getRandomId() });
     Storage.setUsers(state.users);
 
     renderGallery();
+
+    return true;
 }
 
 function deleteImage(imageId) {
@@ -186,4 +193,5 @@ export default {
     init,
     saveImage,
     deleteImage,
+    activeUserObservable,
 };
