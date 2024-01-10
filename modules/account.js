@@ -60,6 +60,10 @@ function setActiveUser(id) {
 }
 
 function saveImage(imageUrl) {
+    if (!state.activeUserId) {
+        throw new Error("Cannot save image when no active user.");
+    }
+
     getActiveUser().images.unshift({ url: imageUrl, id: getRandomId() });
     Storage.setUsers(state.users);
 
