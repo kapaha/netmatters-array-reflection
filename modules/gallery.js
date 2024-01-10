@@ -20,7 +20,7 @@ function renderImageViewer(imageUrl, imageId) {
     gallerySingleImage.dataset.imageId = imageId;
 
     galleryGrid.style.display = "none";
-    gallerySingle.style.display = "flex";
+    gallerySingle.style.display = "grid";
 }
 
 function renderGallery() {

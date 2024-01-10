@@ -14,7 +14,7 @@
 
     <body class="bg-slate-700">
         <main
-            class="mx-auto flex h-dynamic-screen max-w-[375px] flex-col gap-8 p-8"
+            class="mx-auto grid h-dynamic-screen grid-rows-[auto_1fr_auto] gap-8 p-8"
         >
             <!-- User bar -->
             <div
@@ -25,7 +25,7 @@
             </div>
 
             <!-- Tabs -->
-            <div data-tab="account" class="flex-1">
+            <div data-tab="account">
                 <div class="flex flex-col gap-8">
                     <div
                         class="hidden space-y-2 rounded-lg bg-gray-100 p-4"
@@ -64,95 +64,84 @@
                 </div>
             </div>
 
-            <div data-tab="find" class="hidden flex-1">
-                <div class="flex h-full flex-col gap-4">
-                    <div class="flex flex-1 flex-col rounded-lg bg-gray-100">
-                        <div class="flex-1">
-                            <img
-                                class="h-full w-full object-contain"
-                                id="find-image"
-                                alt=""
-                                width="300"
-                                height="300"
-                            />
-                        </div>
-                        <ul
-                            class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
-                        >
-                            <li>
-                                <button
-                                    class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                                    id="new-image-btn"
-                                >
-                                    <i class="fa-solid fa-rotate text-base"></i>
-                                    New Image
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                                    id="save-image-btn"
-                                >
-                                    <i
-                                        class="fa-solid fa-floppy-disk text-base"
-                                    ></i>
-                                    Save
-                                </button>
-                            </li>
-                        </ul>
+            <div data-tab="find" class="hidden overflow-hidden">
+                <div
+                    class="!grid h-full grid-rows-[1fr_auto] rounded-lg bg-gray-100"
+                >
+                    <div class="overflow-hidden">
+                        <img
+                            class="mx-auto h-full object-contain"
+                            id="find-image"
+                            alt=""
+                        />
                     </div>
+                    <ul
+                        class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
+                    >
+                        <li>
+                            <button
+                                class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                                id="new-image-btn"
+                            >
+                                <i class="fa-solid fa-rotate text-base"></i>
+                                New Image
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                                id="save-image-btn"
+                            >
+                                <i
+                                    class="fa-solid fa-floppy-disk text-base"
+                                ></i>
+                                Save
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <div
                 data-tab="gallery"
-                class="hidden flex-1 rounded-lg bg-gray-100 overflow-y-auto"
+                class="hidden overflow-y-auto rounded-lg bg-gray-100"
             >
                 <div id="gallery-grid" class="flex flex-col gap-4">
                     <div id="gallery-container"></div>
                 </div>
-                <div id="gallery-single" class="hidden h-full flex-col gap-4">
-                    <div class="flex h-full flex-col">
-                        <div
-                            class="flex flex-1 flex-col rounded-lg bg-gray-100"
-                        >
-                            <div class="flex-1">
-                                <img
-                                    class="h-full w-full object-contain"
-                                    id="gallery-single-image"
-                                    alt=""
-                                    width="300"
-                                    height="300"
-                                />
-                            </div>
-                            <ul
-                                class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
-                            >
-                                <li>
-                                    <button
-                                        class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                                        id="back-btn"
-                                    >
-                                        <i
-                                            class="fa-solid fa-caret-left text-base"
-                                        ></i>
-                                        Back
-                                    </button>
-                                </li>
-                                <li>
-                                    <button
-                                        class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
-                                        id="delete-image-btn"
-                                    >
-                                        <i
-                                            class="fa-solid fa-trash-can text-base"
-                                        ></i>
-                                        Delete
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+                <div
+                    id="gallery-single"
+                    class="grid hidden h-full grid-rows-[1fr_auto] overflow-hidden rounded-lg bg-gray-100"
+                >
+                    <div class="overflow-hidden">
+                        <img
+                            class="mx-auto h-full object-contain"
+                            id="gallery-single-image"
+                            alt=""
+                        />
                     </div>
+                    <ul
+                        class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
+                    >
+                        <li>
+                            <button
+                                class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                                id="back-btn"
+                            >
+                                <i class="fa-solid fa-caret-left text-base"></i>
+                                Back
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                class="flex w-full flex-col items-center gap-2 px-4 py-3 text-xs leading-none"
+                                id="delete-image-btn"
+                            >
+                                <i class="fa-solid fa-trash-can text-base"></i>
+                                Delete
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
