@@ -8,6 +8,7 @@ const emailForm = document.querySelector("#email-form");
 const emailInput = document.querySelector("#email-input");
 
 const activeUserObservable = new Observable();
+const imagesObservable = new Observable();
 
 const state = {
     users: [],
@@ -39,6 +40,9 @@ function fetchState() {
     }
 
     state.activeUserId = activeUser;
+
+    activeUserObservable.notify();
+    imagesObservable.notify(Boolean(getActiveUser().images.length));
 }
 
 function createUser(email) {
@@ -63,6 +67,7 @@ function setActiveUser(id) {
     renderGallery();
 
     activeUserObservable.notify();
+    imagesObservable.notify(Boolean(getActiveUser().images.length));
 }
 
 function saveImage(imageUrl) {
@@ -84,6 +89,8 @@ function saveImage(imageUrl) {
 
     renderGallery();
 
+    imagesObservable.notify(Boolean(getActiveUser().images.length));
+
     return true;
 }
 
@@ -92,6 +99,8 @@ function deleteImage(imageId) {
         (image) => image.id !== imageId,
     );
     Storage.setUsers(state.users);
+
+    imagesObservable.notify(Boolean(getActiveUser().images.length));
 
     renderGallery();
 }
@@ -194,4 +203,5 @@ export default {
     saveImage,
     deleteImage,
     activeUserObservable,
+    imagesObservable,
 };

@@ -5,6 +5,7 @@ const gallerySingle = document.getElementById("gallery-single");
 const gallerySingleImage = document.getElementById("gallery-single-image");
 const deleteImageBtn = document.getElementById("delete-image-btn");
 const backBtn = document.getElementById("back-btn");
+const galleryTab = document.querySelector("[data-tab=gallery]");
 
 let Account = null;
 let Navigation = null;
@@ -26,6 +27,17 @@ function renderImageViewer(imageUrl, imageId) {
 function renderGallery() {
     gallerySingle.style.display = "none";
     galleryGrid.style.display = "flex";
+}
+
+function renderGalleryTab(imagesExist) {
+    console.log(imagesExist);
+    if (imagesExist) {
+        galleryTab.classList.add("desktop:block");
+        galleryTab.classList.remove("desktop:hidden");
+    } else {
+        galleryTab.classList.add("desktop:hidden");
+        galleryTab.classList.remove("desktop:block");
+    }
 }
 
 function init(account, navigation) {
@@ -54,6 +66,7 @@ function init(account, navigation) {
 
     Navigation.navObservable.subscribe(handleNavChange);
     Account.activeUserObservable.subscribe(renderGallery);
+    Account.imagesObservable.subscribe(renderGalleryTab);
 }
 
 export default {
