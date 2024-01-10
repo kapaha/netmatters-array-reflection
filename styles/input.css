@@ -31,3 +31,83 @@ label {
 
     @apply bg-gray-100;
 }
+
+.toastify {
+    position: fixed;
+    z-index: 2147483647;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    cursor: pointer;
+
+    @apply rounded bg-blue-500 text-white;
+}
+
+.toastify--error {
+    @apply bg-red-500;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toastify-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.toast-close {
+    @apply border-l-2 border-l-gray-100 border-opacity-20 p-4;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right,
+    .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 8px;
+        right: 8px;
+        /* max-width: fit-content; */
+    }
+}

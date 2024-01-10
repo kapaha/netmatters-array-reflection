@@ -746,6 +746,91 @@ label {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+.toastify {
+  position: fixed;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.toastify--error {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
+.toastify.on {
+  opacity: 1;
+}
+
+.toastify-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.toast-close {
+  border-left-width: 2px;
+  border-left-color: rgb(243 244 246 / var(--tw-border-opacity));
+  --tw-border-opacity: 0.2;
+  padding: 1rem;
+}
+
+.toastify-right {
+  right: 15px;
+}
+
+.toastify-left {
+  left: 15px;
+}
+
+.toastify-top {
+  top: -150px;
+}
+
+.toastify-bottom {
+  bottom: -150px;
+}
+
+.toastify-rounded {
+  border-radius: 25px;
+}
+
+.toastify-avatar {
+  width: 1.5em;
+  height: 1.5em;
+  margin: -7px 5px;
+  border-radius: 2px;
+}
+
+.toastify-center {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  max-width: fit-content;
+  max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+  .toastify-right,
+    .toastify-left {
+    margin-left: auto;
+    margin-right: auto;
+    left: 8px;
+    right: 8px;
+    /* max-width: fit-content; */
+  }
+}
+
 @media (min-width: 1024px) {
   .lg\:container {
     width: 100%;

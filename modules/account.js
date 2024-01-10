@@ -1,4 +1,5 @@
 import { getRandomId } from "./utils.js";
+import Toastify from "./toastify.js";
 
 const emailSelect = document.querySelector("#email-select");
 const emailSelectContainer = document.querySelector("#email-select-container");
@@ -61,7 +62,16 @@ function setActiveUser(id) {
 
 function saveImage(imageUrl) {
     if (!state.activeUserId) {
-        throw new Error("Cannot save image when no active user.");
+        Toastify({
+            text: "Please create an account to save images",
+            duration: 2000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+        }).showToast();
+
+        return;
     }
 
     getActiveUser().images.unshift({ url: imageUrl, id: getRandomId() });
@@ -109,8 +119,17 @@ function handleEmailFormSubmit(event) {
     try {
         createUser(email);
     } catch (error) {
-        console.error(error);
-        // TODO: Show error message
+        Toastify({
+            text: error.message,
+            duration: 20000,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            type: "error",
+            className: "toastify--error",
+        }).showToast();
+
         return;
     }
 
