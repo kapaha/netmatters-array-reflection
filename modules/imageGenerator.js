@@ -14,9 +14,11 @@ async function getImage() {
 }
 
 function saveImage() {
-    Account.saveImage(currentImageUrl);
+    const imageSaved = Account.saveImage(currentImageUrl);
 
-    getImage();
+    if (imageSaved) {
+        getImage();
+    }
 }
 
 function init(account) {
