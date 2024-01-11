@@ -137,7 +137,7 @@ function handleEmailFormSubmit(event) {
     } catch (error) {
         Toastify({
             text: error.message,
-            duration: 20000,
+            duration: 2000,
             close: true,
             gravity: "top",
             position: "right",
