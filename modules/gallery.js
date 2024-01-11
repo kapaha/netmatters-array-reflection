@@ -2,13 +2,15 @@ import { addGlobalEventListener } from "./utils.js";
 
 const galleryGrid = document.getElementById("gallery-grid");
 const gallerySingle = document.getElementById("gallery-single");
-const gallerySingleImage = document.getElementById("gallery-single-image");
+const imageViewerContainer = document.getElementById("image-preview-container");
 const deleteImageBtn = document.getElementById("delete-image-btn");
 const backBtn = document.getElementById("back-btn");
 const galleryTab = document.querySelector("[data-tab=gallery]");
 
 let Account = null;
 let Navigation = null;
+
+let viewerImage;
 
 function handleNavChange(tabId) {
     if (tabId === "gallery") {
@@ -17,8 +19,17 @@ function handleNavChange(tabId) {
 }
 
 function renderImageViewer(imageUrl, imageId) {
-    gallerySingleImage.src = imageUrl;
-    gallerySingleImage.dataset.imageId = imageId;
+    if (!viewerImage) {
+        viewerImage = document.createElement("img");
+
+        viewerImage.className = "mx-auto h-full object-contain";
+        viewerImage.alt = "";
+
+        imageViewerContainer.appendChild(viewerImage);
+    }
+
+    viewerImage.src = imageUrl;
+    viewerImage.dataset.imageId = imageId;
 
     galleryGrid.style.display = "none";
     gallerySingle.style.display = "grid";
@@ -56,7 +67,7 @@ function init(account, navigation) {
     });
 
     deleteImageBtn.addEventListener("click", () => {
-        Account.deleteImage(gallerySingleImage.dataset.imageId);
+        Account.deleteImage(viewerImage.dataset.imageId);
 
         renderGallery();
     });
