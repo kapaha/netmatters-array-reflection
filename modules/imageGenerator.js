@@ -20,7 +20,8 @@ async function getImage() {
         imagePreview = document.createElement("img");
 
         imagePreview.id = "find-image";
-        imagePreview.className = "mx-auto hidden h-full object-contain";
+        imagePreview.className =
+            "mx-auto hidden h-full object-contain desktop:w-full desktop:object-cover";
         imagePreview.alt = "";
 
         imagePreviewContainer.appendChild(imagePreview);

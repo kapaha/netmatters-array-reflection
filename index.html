@@ -9,16 +9,24 @@
             src="https://kit.fontawesome.com/4323c15833.js"
             crossorigin="anonymous"
         ></script>
-        <title>JavaScript Array Assessment</title>
+        <title>Image Generator</title>
     </head>
 
     <body class="bg-zinc-800">
         <main
-            class="desktop:rid-rows-none mx-auto grid h-dynamic-screen max-w-[500px] grid-rows-[1fr_auto] gap-8 p-8 desktop:container desktop:h-auto desktop:max-w-screen-lg desktop:grid-cols-2 wide:max-w-screen-md wide:grid-cols-[1fr_auto] wide:grid-rows-none"
+            class="mx-auto grid h-dynamic-screen max-w-[500px] grid-rows-[1fr_auto] gap-8 p-8 desktop:container desktop:h-auto desktop:min-h-dynamic-screen desktop:max-w-screen-lg desktop:grid-cols-2 desktop:grid-rows-none desktop:content-center desktop:items-center wide:max-w-screen-md wide:grid-cols-[1fr_auto] wide:grid-rows-none"
         >
             <!-- Tabs -->
             <div data-tab="account" class="desktop:block">
                 <div class="flex flex-col gap-8">
+                    <h1 class="text-center text-2xl font-bold text-white">
+                        Image Generator
+                    </h1>
+
+                    <p class="text-center text-white">
+                        Create an account, generate random images and save them
+                        to your gallery!
+                    </p>
                     <div
                         class="hidden space-y-2 rounded-lg bg-gray-100 p-4"
                         id="email-select-container"
@@ -56,15 +64,12 @@
                 </div>
             </div>
 
-            <div
-                data-tab="find"
-                class="hidden overflow-hidden desktop:block desktop:min-h-[500px] desktop:overflow-visible"
-            >
+            <div data-tab="find" class="hidden overflow-hidden desktop:block">
                 <div
-                    class="!grid h-full grid-rows-[1fr_auto] gap-8 rounded-lg bg-gray-100"
+                    class="!grid h-full grid-rows-[1fr_auto] gap-8 rounded-lg bg-gray-100 desktop:w-[400px] desktop:gap-0 desktop:overflow-hidden desktop:bg-transparent desktop:h-[400px]"
                 >
                     <div
-                        class="flex items-center justify-center overflow-hidden"
+                        class="flex items-center justify-center overflow-hidden desktop:bg-gray-100"
                         id="find-image-container"
                     >
                         <div
@@ -73,7 +78,7 @@
                         ></div>
                     </div>
                     <ul
-                        class="flex rounded-lg bg-gray-100 text-gray-600 [&>*]:flex-1"
+                        class="flex text-gray-600 desktop:bg-gray-100 [&>*]:flex-1"
                     >
                         <li>
                             <button

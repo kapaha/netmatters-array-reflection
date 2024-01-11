@@ -743,6 +743,15 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1011,12 +1020,25 @@ label {
     display: none;
   }
 
+  .desktop\:h-\[400px\] {
+    height: 400px;
+  }
+
   .desktop\:h-auto {
     height: auto;
   }
 
-  .desktop\:min-h-\[500px\] {
-    min-height: 500px;
+  .desktop\:min-h-dynamic-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .desktop\:w-\[400px\] {
+    width: 400px;
+  }
+
+  .desktop\:w-full {
+    width: 100%;
   }
 
   .desktop\:max-w-screen-lg {
@@ -1027,12 +1049,38 @@ label {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .desktop\:grid-rows-none {
+    grid-template-rows: none;
+  }
+
+  .desktop\:content-center {
+    align-content: center;
+  }
+
+  .desktop\:items-center {
+    align-items: center;
+  }
+
+  .desktop\:gap-0 {
+    gap: 0px;
+  }
+
   .desktop\:overflow-hidden {
     overflow: hidden;
   }
 
-  .desktop\:overflow-visible {
-    overflow: visible;
+  .desktop\:bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  }
+
+  .desktop\:bg-transparent {
+    background-color: transparent;
+  }
+
+  .desktop\:object-cover {
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 
   .desktop\:p-4 {
