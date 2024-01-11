@@ -10,6 +10,9 @@ const emailInput = document.querySelector("#email-input");
 const activeUserObservable = new Observable();
 const imagesObservable = new Observable();
 
+let noAccountToast = null;
+let dupliceAccountToast = null;
+
 const state = {
     users: [],
     activeUserId: null,
@@ -72,7 +75,11 @@ function setActiveUser(id) {
 
 function saveImage(imageUrl) {
     if (!state.activeUserId) {
-        Toastify({
+        if (noAccountToast) {
+            noAccountToast.hideToast();
+        }
+
+        noAccountToast = Toastify({
             text: "Please create an account to save images",
             duration: 2000,
             close: true,
@@ -135,7 +142,11 @@ function handleEmailFormSubmit(event) {
     try {
         createUser(email);
     } catch (error) {
-        Toastify({
+        if (dupliceAccountToast) {
+            dupliceAccountToast.hideToast();
+        }
+
+        dupliceAccountToast = Toastify({
             text: error.message,
             duration: 2000,
             close: true,
