@@ -30,7 +30,6 @@ function renderGallery() {
 }
 
 function renderGalleryTab(imagesExist) {
-    console.log(imagesExist);
     if (imagesExist) {
         galleryTab.classList.add("desktop:block");
         galleryTab.classList.remove("desktop:hidden");

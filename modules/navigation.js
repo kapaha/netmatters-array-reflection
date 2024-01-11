@@ -49,12 +49,6 @@ function init() {
     render();
 }
 
-function logger(tab) {
-    console.log(`Switched to ${tab} tab`);
-}
-
-navObservable.subscribe(logger);
-
 export default {
     init,
     navObservable,
