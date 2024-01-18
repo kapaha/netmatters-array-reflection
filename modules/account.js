@@ -11,7 +11,7 @@ const activeUserObservable = new Observable();
 const imagesObservable = new Observable();
 
 let noAccountToast = null;
-let dupliceAccountToast = null;
+let duplicateAccountToast = null;
 
 const state = {
     users: [],
@@ -142,11 +142,11 @@ function handleEmailFormSubmit(event) {
     try {
         createUser(email);
     } catch (error) {
-        if (dupliceAccountToast) {
-            dupliceAccountToast.hideToast();
+        if (duplicateAccountToast) {
+            duplicateAccountToast.hideToast();
         }
 
-        dupliceAccountToast = Toastify({
+        duplicateAccountToast = Toastify({
             text: error.message,
             duration: 2000,
             close: true,
