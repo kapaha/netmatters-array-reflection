@@ -138,6 +138,14 @@ function handleEmailFormSubmit(event) {
     event.preventDefault();
 
     const email = emailInput.value.trim();
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const validEmail = emailRegex.test(email);
+
+    if (!validEmail) {
+        emailInput.setCustomValidity("Please use a valid email address");
+        emailInput.reportValidity();
+        return;
+    }
 
     try {
         createUser(email);
@@ -200,6 +208,10 @@ function init(storage) {
 
     emailSelect.addEventListener("change", (event) => {
         setActiveUser(event.target.value);
+    });
+
+    emailInput.addEventListener("input", (event) => {
+        event.target.setCustomValidity("");
     });
 
     renderEmailSelect();
