@@ -11,8 +11,6 @@ label {
 
 .navbar-item--active {
     position: relative;
-
-    @apply text-blue-500;
 }
 
 .navbar-item--active::before {
